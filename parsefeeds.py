@@ -8,7 +8,11 @@ output = """<html>
            <script src='feedcourt.js' type='text/javascript'> </script>
         </head>
         <body onload="pagelinks();">
-           <div id='wrapper'>"""
+           <div id='wrapper'>
+            <div id='header'><h1>Feed Court</h1>
+                <p> a wall of text rss aggregator </p> 
+            <div>
+           """
 for url in feedlist:
     f = feedparser.parse(url)
     site = f['feed']['title']
