@@ -14,10 +14,26 @@ body {
   background-color: #010101;
   color: #efefef;
 }
+#header,
 #wrapper {
   margin-left:auto;
   margin-right: auto;
-  padding: 1em;
+}
+#wrapper {
+  padding: 0 1em;
+}
+#header {
+  display: inline-block;
+  padding: 0.5em 1em;
+  width: auto;
+}
+#header p { 
+  position: absolute;
+  left: 9em;
+  top: 0.85em;
+}
+#header h1, p{
+  color: #af2222;;
 }
 .section {
   font-size: 12px;
