@@ -24,7 +24,7 @@ body {
 }
 #header {
   display: inline-block;
-  padding: 0.5em 1em;
+  padding: 0.5em 1em 0 2em;
   width: auto;
 }
 #header p { 
@@ -33,7 +33,7 @@ body {
   top: 0.85em;
 }
 #header h1, p{
-  color: #af2222;;
+  color: #aa4522;;
 }
 .section {
   font-size: 12px;
