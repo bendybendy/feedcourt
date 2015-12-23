@@ -1,0 +1,16 @@
+http://feeds.pinboard.in/rss/popular/
+http://feeds.feedburner.com/Metafilter
+https://news.ycombinator.com/rss
+http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml
+http://feeds.feedburner.com/AskMetafilter
+http://feeds.feedburner.com/TheAtlantic
+http://stackexchange.com/feeds/questions
+http://gis.stackexchange.com/feeds
+http://serverfault.com/feeds
+http://longform.org/feed.rss
+http://feeds.feedburner.com/mefi/Projects
+http://feeds.pinboard.in/rss/popular/wikipedia
+http://www.nytimes.com/services/xml/rss/nyt/Science.xml
+http://news.sciencemag.org/rss/current.xml
+http://feeds.nytimes.com/nyt/rss/Technology
+http://www.nytimes.com/services/xml/rss/nyt/Arts.xml
