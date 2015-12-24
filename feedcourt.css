@@ -36,7 +36,6 @@ body {
   color: #aa4522;;
 }
 .section {
-  font-size: 12px;
   position: relative;
   display: inline-block;
   vertical-align: top;
@@ -64,4 +63,19 @@ body {
   margin-right:auto;
 
 }
-
+@media only screen and (max-device-width: 480px) {
+  /* mobile styles */
+ h1 , h2, body, p {
+    font-size: xx-large;
+  }
+  .entry {
+    padding: 0.9em 0;
+    border-bottom: 1px solid #666;
+  }
+  .entry:hover {
+    background-color: #441111;;
+  }
+  .entry:hover a:visited {
+    color: #fefefe; 
+  }
+}

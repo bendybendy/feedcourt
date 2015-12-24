@@ -1,6 +1,8 @@
 import feedparser
+import datetime
 
-feedlist =  open("feedlist.txt", 'r')
+feedlist =  open("./feedlist.txt", 'r')
+now = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
 
 output = """<html>
         <head><title>Feed Court</title>
@@ -9,10 +11,9 @@ output = """<html>
         </head>
         <body onload="pagelinks();">
            <div id='header'><h1>Feed Court</h1>
-                <p> a wall of text rss aggregator </p> 
+                <p> |  a wall of text rss aggregator  |  updated: %s </p> 
            </div>
-           <div id='wrapper'>
-           """
+           <div id='wrapper'> """ %now 
 for url in feedlist:
     f = feedparser.parse(url)
     site = f['feed']['title']
