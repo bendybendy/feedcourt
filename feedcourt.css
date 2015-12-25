@@ -1,7 +1,7 @@
 h1, h2, body, p  {
   font-family: sans-serif;
   color: #fefefe;
-  font-size: small;
+  font-size: 12;
 }
 a, h2 a:visited {
   color: #aeaeae;
@@ -44,7 +44,7 @@ body {
   width: 26em;
   border: 1px dotted #444;
   padding: 1.1em;
-  margin: 1em 0 0.5em 1em;
+  margin: 0.6em 0 0.8em 1.2em;
 }
 .section_head {
   width: auto;
