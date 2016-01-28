@@ -6,6 +6,7 @@ now = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
 
 output = """<html>
         <head><title>Feed Court</title>
+           <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
            <link rel='stylesheet' type='text/css' href='feedcourt.css'>
            <script src='feedcourt.js' type='text/javascript'> </script>
         </head>
@@ -29,7 +30,8 @@ for url in feedlist:
     for e in f.entries:
         output += """<div class='entry'>
                   <a href='%s' target='_blank'>%s</a>
-                  </div>""" %(e.link, e.title)
+                  </div>""" %(e.link,
+                  e.title.replace(u'\u201c','"').replace(u'\u201d','"').replace('\u2019',"'"))
 
     output += "</div>"
    
