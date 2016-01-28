@@ -30,8 +30,7 @@ for url in feedlist:
     for e in f.entries:
         output += """<div class='entry'>
                   <a href='%s' target='_blank'>%s</a>
-                  </div>""" %(e.link,
-                  e.title.replace(u'\u201c','"').replace(u'\u201d','"').replace('\u2019',"'"))
+                  </div>""" %(e.link, e.title)
 
     output += "</div>"
    
