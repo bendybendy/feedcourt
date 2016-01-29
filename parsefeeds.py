@@ -1,7 +1,7 @@
 import feedparser
 import datetime
 
-feedlist =  open("./feedlist.txt", 'r')
+feedlist =  open("feedlist.txt", 'r')
 #now = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
 now = datetime.datetime.utcnow().isoformat()
 
