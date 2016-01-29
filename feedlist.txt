@@ -14,8 +14,10 @@ http://feeds.feedburner.com/mefi/Projects
 http://feeds.pinboard.in/rss/popular/wikipedia
 http://www.nytimes.com/services/xml/rss/nyt/Science.xml
 http://feeds.nytimes.com/nyt/rss/Technology
+http://qz.com/feed
 http://www.nytimes.com/services/xml/rss/nyt/Arts.xml
 https://www.reddit.com/r/MapPorn.rss
 https://www.reddit.com/r/Geography.rss
+http://feeds2.feedburner.com/TheAwl
 http://thequietus.com/feed
 http://deals.kinja.com/rss

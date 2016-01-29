@@ -2,7 +2,8 @@ import feedparser
 import datetime
 
 feedlist =  open("./feedlist.txt", 'r')
-now = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
+#now = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
+now = datetime.datetime.utcnow().isoformat()
 
 output = """<html>
         <head><title>Feed Court</title>
@@ -10,11 +11,11 @@ output = """<html>
            <link rel='stylesheet' type='text/css' href='feedcourt.css'>
            <script src='feedcourt.js' type='text/javascript'> </script>
         </head>
-        <body onload="pagelinks();">
+        <body onload="loadroutine();">
            <div id='header'><h1>Feed Court</h1>
-                <p> |  a wall of text rss aggregator  |  updated: %s </p> 
+                <p> |  a wall of text rss aggregator  |  updated: <span id='utcupdate'>%s</span </p> 
            </div>
-           <div id='wrapper'> """ %now 
+           <div id='wrapper'> """ %now
 for url in feedlist:
     f = feedparser.parse(url)
     site = f['feed']['title']

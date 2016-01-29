@@ -14,3 +14,12 @@ function pagelinks(){
         });
     }
 }
+function utctolocal(){
+    var utc = document.getElementById("utcupdate").innerHTML
+    document.getElementById("utcupdate").innerHTML = Date(utc);
+
+}
+function loadroutine(){
+    utctolocal();
+    pagelinks();
+}
