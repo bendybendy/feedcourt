@@ -14,9 +14,18 @@ function pagelinks(){
         });
     }
 }
+function convertUTCDateToLocalDate(date) {
+        var newDate = new Date(date.getTime()+date.getTimezoneOffset()*60*1000);
+
+        var offset = date.getTimezoneOffset() / 60;
+        var hours = date.getHours();
+        newDate.setHours(hours - offset);
+        return newDate;   
+}
 function utctolocal(){
-    var utc = document.getElementById("utcupdate").innerHTML
-    document.getElementById("utcupdate").innerHTML = Date(utc);
+    var lastup =  document.getElementById("utcupdate").innerHTML;
+    var offsetlastup = convertUTCDateToLocalDate(new Date(lastup));
+    document.getElementById("utcupdate").innerHTML = offsetlastup.toString().replace(/GMT.[0-9]*/g,"");
 
 }
 function loadroutine(){
