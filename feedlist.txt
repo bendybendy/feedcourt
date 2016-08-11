@@ -1,4 +1,3 @@
-http://feeds.pinboard.in/rss/popular/
 http://feeds.feedburner.com/Metafilter
 https://news.ycombinator.com/rss
 http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml
@@ -10,6 +9,9 @@ http://stackexchange.com/feeds/questions
 http://gis.stackexchange.com/feeds
 http://serverfault.com/feeds
 https://www.reddit.com/r/AskHistorians.rss
+http://www.buzzfeed.com/usnews.xml
+http://www.buzzfeed.com/world.xml
+http://www.buzzfeed.com/longform.xml
 http://longform.org/feed.rss
 http://feeds.feedburner.com/mefi/Projects
 http://feeds.pinboard.in/rss/popular/wikipedia
