@@ -2,9 +2,8 @@ http://feeds.pinboard.in/rss/recent/?textify=1
 http://feeds.feedburner.com/Metafilter
 https://news.ycombinator.com/rss
 http://feeds.pinboard.in/rss/popular/?textify=1
-http://feeds.feedburner.com/Metafilter
-http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml
 http://feeds.feedburner.com/AskMetafilter
+http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml
 http://feeds.feedburner.com/TheAtlantic
 http://www.newyorker.com/feed/everything
 http://fivethirtyeight.com/all/feed
