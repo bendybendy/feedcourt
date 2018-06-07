@@ -25,7 +25,12 @@ output = """<html>
            <div id='wrapper'> """ %now
 for url in feedlist:
     f = feedparser.parse(url)
-    site = f['feed']['title']
+    # to debug which feed might be failing, uncomment this
+    #print f['feed']['title']
+    if f['feed']['title']:
+    	site = f['feed']['title']
+    else:
+	site = f['feed']
     # make id by getting rid of spaces and non-alphanumerics
     siteid = filter(str.isalnum, site.strip().replace(" ","").encode("utf-8"))
     moreid = "more" + siteid 
