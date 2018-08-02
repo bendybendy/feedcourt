@@ -16,13 +16,10 @@ https://www.reddit.com/r/ArtefactPorn.rss
 https://www.reddit.com/r/linguistics.rss
 https://www.reddit.com/r/philosophy.rss
 https://www.reddit.com/r/AskACountry.rss
-http://www.buzzfeed.com/usnews.xml
-http://www.buzzfeed.com/world.xml
 http://longform.org/feed.rss
 http://feeds.feedburner.com/mefi/Projects
 http://www.nytimes.com/services/xml/rss/nyt/Science.xml
 http://feeds.nytimes.com/nyt/rss/Technology
-http://qz.com/feed
 http://www.nytimes.com/services/xml/rss/nyt/Arts.xml
 https://www.reddit.com/r/MapPorn.rss
 https://www.reddit.com/r/Geography.rss
