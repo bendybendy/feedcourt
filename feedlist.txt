@@ -16,6 +16,10 @@ https://www.reddit.com/r/ArtefactPorn.rss
 https://www.reddit.com/r/linguistics.rss
 https://www.reddit.com/r/philosophy.rss
 https://www.reddit.com/r/AskACountry.rss
+https://www.reddit.com/r/commandline.rss
+https://www.reddit.com/r/osxterminal.rss
+https://www.reddit.com/r/unixporn.rss
+https://hazlitt.net/rss.xml
 http://longform.org/feed.rss
 http://feeds.feedburner.com/mefi/Projects
 http://www.nytimes.com/services/xml/rss/nyt/Science.xml
@@ -23,9 +27,13 @@ http://feeds.nytimes.com/nyt/rss/Technology
 http://www.nytimes.com/services/xml/rss/nyt/Arts.xml
 https://www.reddit.com/r/MapPorn.rss
 https://www.reddit.com/r/Geography.rss
+https://publicdomainreview.org/feed/
+https://www.aldaily.com/feed
 http://thequietus.com/feed
+http://feeds.feedburner.com/seriouseatsfeaturesvideos
 https://pitchfork.com/rss/reviews/albums/
 http://deals.kinja.com/rss
+https://lifehacker.com/rss
 https://www.reddit.com/.rss?feed=5818ede8174bea3c164b1669a88c82ee57dba26c&user=bendybendy
 http://feeds.pinboard.in/rss/popular/wikipedia
 http://feeds.pinboard.in/rss/recent/?textify=1
