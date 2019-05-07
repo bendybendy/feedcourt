@@ -33,7 +33,7 @@ body {
   top: 0.85em;
 }
 #header h1, p{
-  color: #aa4522;;
+  color: #de4e1c;;
 }
 .section {
   position: relative;
@@ -50,10 +50,14 @@ body {
   width: auto;
 }
 .more {
-  text-align: right;
+  width: 2rem;
+  border: 1px solid #333;
+  padding: 0 0.3rem 0.1rem 0.3rem;
   position: absolute;
-  right: 1em;
-  top:2em;
+  right: 1rem;
+  top:1.4rem;
+  text-align: center;
+  font-variant: small-caps;
 }
 .entry {
   border-bottom: 1px solid #333;
@@ -62,6 +66,10 @@ body {
   margin-left:auto;
   margin-right:auto;
 
+}
+.section_head h2 a:hover,
+.entry a:hover {
+  color: #efefee;
 }
 @media only screen and (max-device-width: 480px) {
   /* mobile styles */
