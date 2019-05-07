@@ -14,6 +14,7 @@ body {
   background-color: #010101;
   color: #efefef;
 }
+#footer,
 #header,
 #wrapper {
   margin-left:auto;
@@ -22,6 +23,7 @@ body {
 #wrapper {
   padding: 0 1em;
 }
+#footer,
 #header {
   display: inline-block;
   padding: 0.5em 1em 0 2em;
@@ -32,6 +34,7 @@ body {
   left: 9em;
   top: 0.85em;
 }
+#footer,
 #header h1, p{
   color: #de4e1c;;
 }

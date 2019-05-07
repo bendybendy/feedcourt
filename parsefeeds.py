@@ -48,7 +48,7 @@ for url in feedlist:
     output += "</div>"
    
 
-output += "</div></body></html>"
+output += "</div><div id='footer'> source code: <a href='https://github.com/bendybendy/feedcourt'> https://github.com/bendybendy/feedcourt </a> </body></html>"
 index = open("index.html", 'w')
 index.write(output.encode("utf-8"))
 
