@@ -4,12 +4,12 @@ function pagelinks(){
         console.log("making links");
         l = morelinks[i];
         l.addEventListener('click',function(){
-            if (this.innerHTML == "more") {
-                this.parentElement.parentElement.style.height = "auto";
-                this.innerHTML = "less";
-            }else {
+            if (this.innerHTML == "less") {
                 this.parentElement.parentElement.style.height = "30em";
                 this.innerHTML = "more";
+            }else {
+                this.parentElement.parentElement.style.height = "auto";
+                this.innerHTML = "less";
             }
         });
     }
