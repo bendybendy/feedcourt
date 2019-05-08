@@ -90,6 +90,32 @@ body {
 .entry a:hover {
   color: #efefee;
 }
+@media only screen and (max-device-width: 812px){
+  .jumblewrapper,
+  .wrapper,
+  .section {
+    padding: 0;
+  }
+
+  .more {
+    right: 2.7rem;
+    font-size: larger;
+    color: green;
+  }
+
+  #header p {
+    position: unset;
+    font-size: 2rem; 
+  }
+
+  #jumblewrapper {
+    line-height: 3rem;
+    max-width: 88%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
 @media only screen and (max-device-width: 480px) {
   /* mobile styles */
  h1 , h2, body, p {
