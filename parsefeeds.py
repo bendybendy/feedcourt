@@ -31,8 +31,8 @@ all_entries = []
 joutput = output
 
 #start the wrapper divs and header  
-output +="<span class='sorter'><a href='./jumble.html'> jumble </span><div id='wrapper'></p></div>" 
-joutput +="<span class='sorter'><a href='./'> sort </a></span> <div id='jumblewrapper'></p></div>" 
+output +="<span class='sorter'><a href='./jumble.html'> jumble </a> </span></p></div> <div id='wrapper'>" 
+joutput +="<span class='sorter'><a href='./'> sort </a></span> </p></div> <div id='jumblewrapper'>" 
 
 for url in feedlist:
     f = feedparser.parse(url)
