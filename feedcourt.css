@@ -16,7 +16,6 @@ body {
 }
 #footer,
 #header,
-#jumblewrapper,
 #wrapper {
   margin-left:auto;
   margin-right: auto;
@@ -28,6 +27,7 @@ body {
 #jumblewrapper {
   line-height: 1.24rem;
   padding: 0 1.5rem;
+  max-width: 40rem;
 }
 
 #footer,
