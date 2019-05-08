@@ -22,18 +22,17 @@ output = """<html>
         </head>
         <body onload="loadroutine();">
            <div id='header'><h1>Feed Court</h1>
-                <p> |  a wall of text rss aggregator  |  updated: <span id='utcupdate'>%s</span </p> 
-           </div> """ %now
-           #<div id='wrapper'> """ %now
+                <p> |  a wall of text rss aggregator  |  updated: <span id='utcupdate'>%s</span> | 
+           """ %now
 
 #init list for jumbling entries  
 all_entries = []
 # make a copy of the header for the jumble page 
 joutput = output
 
-#start the wrapper divs 
-output +="<div id='wrapper'>" 
-joutput +="<div id='jumblewrapper'>" 
+#start the wrapper divs and header  
+output +="<span class='sorter'><a href='./jumble.html'> jumble </span><div id='wrapper'></p></div>" 
+joutput +="<span class='sorter'><a href='./'> sort </a></span> <div id='jumblewrapper'></p></div>" 
 
 for url in feedlist:
     f = feedparser.parse(url)

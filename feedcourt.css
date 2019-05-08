@@ -45,6 +45,13 @@ body {
 #header h1, p{
   color: #de4e1c;;
 }
+.sorter {
+  font-weight: 800;
+}
+.sorter a,
+.sorter a:visited{
+  color: green;
+}
 .section {
   position: relative;
   display: inline-block;
