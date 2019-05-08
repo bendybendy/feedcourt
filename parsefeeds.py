@@ -8,6 +8,7 @@ now = datetime.datetime.utcnow().isoformat()
 output = """<html>
         <head><title>Feed Court</title>
            <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+           <meta http-equiv="refresh" content="600">
            <link rel='stylesheet' type='text/css' href='feedcourt.css'>
            <link href="apple-touch-icon.png" rel="apple-touch-icon" />
            <link href="apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76" />
