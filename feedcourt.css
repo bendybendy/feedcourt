@@ -16,13 +16,20 @@ body {
 }
 #footer,
 #header,
+#jumblewrapper,
 #wrapper {
   margin-left:auto;
   margin-right: auto;
 }
+#jumblewrapper,
 #wrapper {
   padding: 0 1em;
 }
+#jumblewrapper {
+  line-height: 1.24rem;
+  padding: 0 1.5rem;
+}
+
 #footer,
 #header {
   display: inline-block;
@@ -70,6 +77,8 @@ body {
   margin-right:auto;
 
 }
+.jumblesite a:hover,
+.jumble a:hover,
 .section_head h2 a:hover,
 .entry a:hover {
   color: #efefee;
