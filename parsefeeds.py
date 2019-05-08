@@ -1,5 +1,6 @@
 import feedparser
 import datetime
+from random import shuffle 
 
 feedlist =  open("feedlist.txt", 'r')
 #now = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
@@ -22,8 +23,18 @@ output = """<html>
         <body onload="loadroutine();">
            <div id='header'><h1>Feed Court</h1>
                 <p> |  a wall of text rss aggregator  |  updated: <span id='utcupdate'>%s</span </p> 
-           </div>
-           <div id='wrapper'> """ %now
+           </div> """ %now
+           #<div id='wrapper'> """ %now
+
+#init list for jumbling entries  
+all_entries = []
+# make a copy of the header for the jumble page 
+joutput = output
+
+#start the wrapper divs 
+output +="<div id='wrapper'>" 
+joutput +="<div id='jumblewrapper'>" 
+
 for url in feedlist:
     f = feedparser.parse(url)
     # to debug which feed might be failing, uncomment this
@@ -42,9 +53,13 @@ for url in feedlist:
                 <div class='more' id='%s'> more </div>
                 </div><div></div>""" %(siteid, sitelink, site, moreid) 
     for e in f.entries:
+        # make main page link
         output += """<div class='entry'>
                   <a href='%s' target='_blank'>%s</a>
                   </div>""" %(e.link, e.title)
+        # generate jumble page link for later
+        jumblerow = """<span class='jumble'> <a href='%s' target='_blank'>%s</a><span class='jumblesite'><a href='%s'> ( %s ) </a></span></span> | """ %(e.link, e.title, sitelink, siteid)
+        all_entries.append(jumblerow)
 
     output += "</div>"
    
@@ -52,4 +67,14 @@ for url in feedlist:
 output += "</div><div id='footer'> source code: <a href='https://github.com/bendybendy/feedcourt'> https://github.com/bendybendy/feedcourt </a> </body></html>"
 index = open("index.html", 'w')
 index.write(output.encode("utf-8"))
+
+# finish the jumble page 
+shuffle(all_entries)                   
+for row in all_entries:   
+    joutput +=row
+
+
+joutput += "</div><div id='footer'> source code: <a href='https://github.com/bendybendy/feedcourt'> https://github.com/bendybendy/feedcourt </a> </body></html>"
+index = open("jumble.html", 'w')
+index.write(joutput.encode("utf-8"))
 
