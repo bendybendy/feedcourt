@@ -3,6 +3,9 @@ h1, h2, body, p  {
   color: #fefefe;
   font-size: 12;
 }
+.section_head h2 {
+  max-width: 14rem;
+}
 a, h2 a:visited {
   color: #aeaeae;
   text-decoration: none;
