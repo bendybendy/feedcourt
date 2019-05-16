@@ -57,7 +57,7 @@ for url in feedlist:
                   <a href='%s' target='_blank'>%s</a>
                   </div>""" %(e.link, e.title)
         # generate jumble page link for later
-        jumblerow = """<span class='jumble'> <a href='%s' target='_blank'>%s</a><span class='jumblesite'><a href='%s'> ( %s ) </a></span></span> | """ %(e.link, e.title, sitelink, siteid)
+        jumblerow = """<span class='jumble'> <a href='%s' target='_blank'>%s</a><span class='jumblesite'><a href='%s'> ( %s ) </a></span></span> | """ %(e.link, e.title, sitelink, site)
         all_entries.append(jumblerow)
 
     output += "</div>"
