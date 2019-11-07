@@ -4,6 +4,7 @@ https://www.techmeme.com/feed.xml
 http://feeds.feedburner.com/AskMetafilter
 http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml
 http://feeds.feedburner.com/TheAtlantic
+https://www.reddit.com/r/bullcity/
 http://www.pewresearch.org/feed/
 http://www.newyorker.com/feed/everything
 http://fivethirtyeight.com/all/feed
@@ -29,6 +30,8 @@ https://www.reddit.com/r/MapPorn.rss
 https://www.reddit.com/r/Geography.rss
 https://publicdomainreview.org/feed/
 https://www.aldaily.com/feed
+https://dustedmagazine.tumblr.com/rss
+https://www.avclub.com/rss
 http://thequietus.com/feed
 http://feeds.feedburner.com/seriouseatsfeaturesvideos
 https://pitchfork.com/rss/reviews/albums/
