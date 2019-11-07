@@ -4,7 +4,7 @@ https://www.techmeme.com/feed.xml
 http://feeds.feedburner.com/AskMetafilter
 http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml
 http://feeds.feedburner.com/TheAtlantic
-https://www.reddit.com/r/bullcity/
+https://www.reddit.com/r/bullcity.rss
 http://www.pewresearch.org/feed/
 http://www.newyorker.com/feed/everything
 http://fivethirtyeight.com/all/feed
