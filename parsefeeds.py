@@ -2,9 +2,13 @@ import feedparser
 import datetime
 from random import shuffle 
 
+import re
+
 feedlist =  open("feedlist.txt", 'r')
 #now = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
 now = datetime.datetime.utcnow().isoformat()
+
+pattern = re.compile('[\W_]+')
 
 output = """<html>
         <head><title>Feed Court</title>
@@ -39,11 +43,11 @@ for url in feedlist:
     # to debug which feed might be failing, uncomment this
     #print f['feed']['title']
     if f['feed']['title']:
-    	site = f['feed']['title']
+        site = f['feed']['title']
     else:
-	site = f['feed']
+        site = f['feed']
     # make id by getting rid of spaces and non-alphanumerics
-    siteid = filter(str.isalnum, site.strip().replace(" ","").encode("utf-8"))
+    siteid = pattern.sub('', site.strip().replace(" ",""))
     moreid = "more" + siteid 
     sitelink = f['feed']['link']
     output += """<div class='section' id='%s'>
@@ -65,7 +69,7 @@ for url in feedlist:
 
 output += "</div><div id='footer'> source code: <a href='https://github.com/bendybendy/feedcourt'> https://github.com/bendybendy/feedcourt </a> </body></html>"
 index = open("index.html", 'w')
-index.write(output.encode("utf-8"))
+index.write(output)
 
 # finish the jumble page 
 shuffle(all_entries)                   
@@ -75,5 +79,5 @@ for row in all_entries:
 
 joutput += "</div><div id='footer'> source code: <a href='https://github.com/bendybendy/feedcourt'> https://github.com/bendybendy/feedcourt </a> </body></html>"
 index = open("jumble.html", 'w')
-index.write(joutput.encode("utf-8"))
+index.write(joutput)
 
