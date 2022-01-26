@@ -1,7 +1,11 @@
+html {
+  font-size: .91rem;
+}
+
 h1, h2, body, p  {
   font-family: sans-serif;
   color: #fefefe;
-  font-size: 12;
+  /* font-size: 13; */
 }
 .section_head h2 {
   max-width: 14rem;
@@ -11,7 +15,7 @@ a, h2 a:visited {
   text-decoration: none;
 }
 a:visited {
-  color: #333;
+  color: #777;
 }
 body {
   background-color: #010101;
@@ -62,7 +66,7 @@ body {
   vertical-align: top;
   height: 30em;
   overflow: hidden;
-  width: 26em;
+  width: 33em;
   border: 1px dotted #444;
   padding: 1.1em;
   margin: 0.6em 0 0.8em 1.2em;
@@ -81,13 +85,36 @@ body {
   font-variant: small-caps;
 }
 .entry {
-  border-bottom: 1px solid #333;
+  border-top: 1px solid #333;
   padding: 0.2em 0;
-  max-width: 25em;
+  max-width: 32em;
   margin-left:auto;
   margin-right:auto;
-
+  font-family: -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, Helvetica, sans-serif;
 }
+
+.iconholder {
+  float: right;
+  border: 1px solid #F2F2F2;
+  border-radius: 2px;
+  padding: 1px;
+  margin-left: 0.4em;
+  margin-bottom: 0.4em;
+}
+.entry {
+  clear: both;
+}
+.icon {
+  box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.1);
+  object-fit: cover;
+  object-position: center center;
+  overflow: hidden;
+  width: 55px;
+  height: 55px;
+  display: block;
+  background-size: contain;
+}
+
 .jumblesite a:hover,
 .jumble a:hover,
 .section_head h2 a:hover,

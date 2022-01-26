@@ -3,6 +3,7 @@ import datetime
 from random import shuffle 
 
 import re
+from bs4 import BeautifulSoup
 
 feedlist =  open("feedlist.txt", 'r')
 #now = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
@@ -11,9 +12,8 @@ now = datetime.datetime.utcnow().isoformat()
 pattern = re.compile('[\W_]+')
 
 output = """<html>
-        <head><title>Feed Court</title>
+        <head><title>Fresh News</title>
            <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
-           <meta http-equiv="refresh" content="600">
            <link rel='stylesheet' type='text/css' href='feedcourt.css'>
            <link href="apple-touch-icon.png" rel="apple-touch-icon" />
            <link href="apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76" />
@@ -47,6 +47,7 @@ for url in feedlist:
     else:
         site = f['feed']
     # make id by getting rid of spaces and non-alphanumerics
+    print (site.strip().replace(" ",""))
     siteid = pattern.sub('', site.strip().replace(" ",""))
     moreid = "more" + siteid 
     sitelink = f['feed']['link']
@@ -57,9 +58,36 @@ for url in feedlist:
                 </div><div></div>""" %(siteid, sitelink, site, moreid) 
     for e in f.entries:
         # make main page link
+        if "media_thumbnail" in e:
+            thumbnail = """<div class='iconholder'><span class='icon' style='background-image: url("%s");'></span></div>
+            """ %(e.media_thumbnail[0]["url"])
+        else:
+            thumbnail = ""
+
+        if thumbnail == "" and "media_content" in e and len(e.media_content[0]) > 0:
+            thumbnail = """<div class='iconholder'><span class='icon' style='background-image: url("%s");'></span></div>
+            """ %(e.media_content[0]["url"])
+
+        comments = ""
+        
+        if "comments" in e:
+            comments = """<div class='comments'><a href='%s' target='_blank'>Comments &gt;</a></div>""" %(e.comments)
+        
+        if "content" in e:
+            soup = BeautifulSoup(e.content[0]["value"], 'html.parser')
+            if thumbnail == "" and soup.find('img'):
+                thumbnail = """<div class='iconholder'><span class='icon' style='background-image: url("%s");'></span></div>
+                """ %(soup.find('img').attrs["src"])
+
+            reddit = soup.find_all('a')[-2:]
+            if len(reddit) == 2 and reddit[0].get_text() == '[link]' and reddit[1].get_text() == '[comments]':
+                e.link = reddit[0].attrs["href"]
+                comments = """<div class='comments'><a href='%s' target='_blank'>Comments &gt;</a></div>""" %(reddit[1].attrs["href"])
+        
         output += """<div class='entry'>
-                  <a href='%s' target='_blank'>%s</a>
-                  </div>""" %(e.link, e.title)
+                  <a href='%s' target='_blank'>%s%s</a>
+                  %s
+                  </div>""" %(e.link, thumbnail, e.title, comments)
         # generate jumble page link for later
         jumblerow = """<span class='jumble'> <a href='%s' target='_blank'>%s</a><span class='jumblesite'><a href='%s'> ( %s ) </a></span></span> | """ %(e.link, e.title, sitelink, site)
         all_entries.append(jumblerow)
