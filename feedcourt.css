@@ -45,7 +45,7 @@ body {
 }
 #header p { 
   position: absolute;
-  left: 9em;
+  right: 9em;
   top: 0.85em;
   text-transform: lowercase;
 }

@@ -15,6 +15,7 @@ output = """<html>
         <head><title>Fresh News</title>
            <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
            <link rel='stylesheet' type='text/css' href='feedcourt.css'>
+           <link rel='stylesheet' type='text/css' href='tooltip.min.css'>
            <link href="apple-touch-icon.png" rel="apple-touch-icon" />
            <link href="apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76" />
            <link href="apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120" />
@@ -34,6 +35,57 @@ all_entries = []
 # make a copy of the header for the jumble page 
 joutput = output
 
+def get_entry_metadata (e):
+    """
+    We're looking for 4 items which we will return in a list (or the empty string)
+    1. The target link
+    2. thumbnail image
+    3. comments link
+    4. tooltip text ... plain text ONLY!
+    """
+
+    thumbnail = None
+    comments = None
+    tooltip = None
+    link = e.link
+    
+    if "media_thumbnail" in e:
+        if "url" in e.media_thumbnail[0]:
+            thumbnail = e.media_thumbnail[0]["url"]
+
+    if thumbnail is None and "media_content" in e and len(e.media_content[0]) > 0:
+        if "url" in e.media_content[0]:
+            thumbnail = e.media_content[0]["url"]
+    
+    if "comments" in e:
+        comments = e.comments
+
+    if "content" in e:
+        soup = BeautifulSoup(e.content[0]["value"], 'html.parser')
+        if thumbnail is None and soup.find('img'):
+            img = soup.find('img')
+            if "src" in img.attrs:
+                thumbnail = img.attrs["src"]
+
+        [i.replace_with(i['alt']) for i in soup.find_all('img', alt=True)]
+        tooltip = soup.get_text()
+
+        reddit = soup.find_all('a')[-2:]
+        if len(reddit) == 2 and reddit[0].get_text() == '[link]' and reddit[1].get_text() == '[comments]':
+            link = reddit[0].attrs["href"]
+            comments = reddit[1].attrs["href"]
+            tooltip = tooltip[:-(len("[link] [comments] "))] # Remove extra text at the end for Reddit
+
+    # tooltips get too long....
+    if tooltip:
+        t = tooltip.split(" ")
+        if len(t) > 50:
+            tooltip = " ".join(t[:50]) + "..."
+        else:
+            tooltip = " ".join(t[:50])
+
+    return (link, thumbnail, comments, tooltip)
+
 #start the wrapper divs and header  
 output +="<span class='sorter'><a href='./jumble.html'> jumble </a> </span></p></div> <div id='wrapper'>" 
 joutput +="<span class='sorter'><a href='./'> sort </a></span> </p></div> <div id='jumblewrapper'>" 
@@ -47,7 +99,6 @@ for url in feedlist:
     else:
         site = f['feed']
     # make id by getting rid of spaces and non-alphanumerics
-    print (site.strip().replace(" ",""))
     siteid = pattern.sub('', site.strip().replace(" ",""))
     moreid = "more" + siteid 
     sitelink = f['feed']['link']
@@ -57,45 +108,38 @@ for url in feedlist:
                 <div class='more' id='%s'> more </div>
                 </div><div></div>""" %(siteid, sitelink, site, moreid) 
     for e in f.entries:
+
         # make main page link
-        if "media_thumbnail" in e:
+        thumbnail = comments = tooltip = ""
+        entry = get_entry_metadata (e)
+
+        if entry[1]:
             thumbnail = """<div class='iconholder'><span class='icon' style='background-image: url("%s");'></span></div>
-            """ %(e.media_thumbnail[0]["url"])
-        else:
-            thumbnail = ""
+            """ %(entry[1])
 
-        if thumbnail == "" and "media_content" in e and len(e.media_content[0]) > 0:
-            thumbnail = """<div class='iconholder'><span class='icon' style='background-image: url("%s");'></span></div>
-            """ %(e.media_content[0]["url"])
+        if entry[2]:
+            comments = """<div class='comments'><a href='%s' target='_blank'>Comments &gt;</a></div>""" %(entry[2])
+        
+        # Add tooltips, but enact a text length (not just word length)
+        if entry[3]:
+            tooltip = """ data-tooltip='%s' aria-describedby='tooltipText' tabindex='0'""" %(entry[3][:1000])
 
-        comments = ""
-        
-        if "comments" in e:
-            comments = """<div class='comments'><a href='%s' target='_blank'>Comments &gt;</a></div>""" %(e.comments)
-        
-        if "content" in e:
-            soup = BeautifulSoup(e.content[0]["value"], 'html.parser')
-            if thumbnail == "" and soup.find('img'):
-                thumbnail = """<div class='iconholder'><span class='icon' style='background-image: url("%s");'></span></div>
-                """ %(soup.find('img').attrs["src"])
-
-            reddit = soup.find_all('a')[-2:]
-            if len(reddit) == 2 and reddit[0].get_text() == '[link]' and reddit[1].get_text() == '[comments]':
-                e.link = reddit[0].attrs["href"]
-                comments = """<div class='comments'><a href='%s' target='_blank'>Comments &gt;</a></div>""" %(reddit[1].attrs["href"])
-        
         output += """<div class='entry'>
-                  <a href='%s' target='_blank'>%s%s</a>
+                  <a href='%s' target='_blank'%s>%s%s</a>
                   %s
-                  </div>""" %(e.link, thumbnail, e.title, comments)
+                  </div>""" %(entry[0], tooltip, thumbnail, e.title, comments)
         # generate jumble page link for later
-        jumblerow = """<span class='jumble'> <a href='%s' target='_blank'>%s</a><span class='jumblesite'><a href='%s'> ( %s ) </a></span></span> | """ %(e.link, e.title, sitelink, site)
+        jumblerow = """<span class='jumble'> <a href='%s' target='_blank'>%s</a><span class='jumblesite'><a href='%s'> ( %s ) </a></span></span> | """ %(entry[0], e.title, sitelink, site)
         all_entries.append(jumblerow)
 
     output += "</div>"
    
 
-output += "</div><div id='footer'> source code: <a href='https://github.com/bendybendy/feedcourt'> https://github.com/bendybendy/feedcourt </a> </body></html>"
+output += """</div><div id='footer'> 
+             source code: <a href='https://github.com/bendybendy/feedcourt'> https://github.com/bendybendy/feedcourt </a>
+             <div class='tooltip-container' role='alertdialog' id='tooltipText' aria-hidden='true' aria-live='polite'></div>
+             <script defer src='tooltip.min.js' type='text/javascript'></script>
+            </body></html>"""
 index = open("index.html", 'w')
 index.write(output)
 
