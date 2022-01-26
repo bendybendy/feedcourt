@@ -5,35 +5,8 @@ from random import shuffle
 import re
 from bs4 import BeautifulSoup
 
-feedlist =  open("feedlist.txt", 'r')
-#now = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
-now = datetime.datetime.utcnow().isoformat()
-
-pattern = re.compile('[\W_]+')
-
-output = """<html>
-        <head><title>Fresh News</title>
-           <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
-           <link rel='stylesheet' type='text/css' href='feedcourt.css'>
-           <link rel='stylesheet' type='text/css' href='tooltip.min.css'>
-           <link href="apple-touch-icon.png" rel="apple-touch-icon" />
-           <link href="apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76" />
-           <link href="apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120" />
-           <link href="apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
-           <link href="apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
-           <link href="icon-hires.png" rel="icon" sizes="192x192" />
-           <link href="icon-normal.png" rel="icon" sizes="128x128" />
-           <script src='feedcourt.js' type='text/javascript'> </script>
-        </head>
-        <body onload="loadroutine();">
-           <div id='header'><h1>Feed Court</h1>
-                <p> |  a wall of text rss aggregator  |  updated: <span id='utcupdate'>%s</span> | 
-           """ %now
-
-#init list for jumbling entries  
-all_entries = []
-# make a copy of the header for the jumble page 
-joutput = output
+import argparse
+import pathlib
 
 def get_entry_metadata (e):
     """
@@ -85,6 +58,41 @@ def get_entry_metadata (e):
             tooltip = " ".join(t[:50])
 
     return (link, thumbnail, comments, tooltip)
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-o', '--output', help="Specify the output folder", type=pathlib.Path, default=pathlib.Path('.'))
+parser.add_argument('-f', '--feedlist', help="The text file of feeds to load", type=argparse.FileType('r'), default="feedlist.txt")
+args = parser.parse_args()
+
+feedlist = args.feedlist
+#now = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
+now = datetime.datetime.utcnow().isoformat()
+
+pattern = re.compile('[\W_]+')
+
+output = """<html>
+        <head><title>Fresh News</title>
+           <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+           <link rel='stylesheet' type='text/css' href='feedcourt.css'>
+           <link rel='stylesheet' type='text/css' href='tooltip.min.css'>
+           <link href="apple-touch-icon.png" rel="apple-touch-icon" />
+           <link href="apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76" />
+           <link href="apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120" />
+           <link href="apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+           <link href="apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+           <link href="icon-hires.png" rel="icon" sizes="192x192" />
+           <link href="icon-normal.png" rel="icon" sizes="128x128" />
+           <script src='feedcourt.js' type='text/javascript'> </script>
+        </head>
+        <body onload="loadroutine();">
+           <div id='header'><h1>Feed Court</h1>
+                <p> |  a wall of text rss aggregator  |  updated: <span id='utcupdate'>%s</span> | 
+           """ %now
+
+#init list for jumbling entries  
+all_entries = []
+# make a copy of the header for the jumble page 
+joutput = output
 
 #start the wrapper divs and header  
 output +="<span class='sorter'><a href='./jumble.html'> jumble </a> </span></p></div> <div id='wrapper'>" 
@@ -139,7 +147,7 @@ output += """</div><div id='footer'>
              <div class='tooltip-container' role='alertdialog' id='tooltipText' aria-hidden='true' aria-live='polite'></div>
              <script defer src='tooltip.min.js' type='text/javascript'></script>
             </body></html>"""
-index = open("index.html", 'w')
+index = open(str(args.output.resolve()) + "/index.html", 'w')
 index.write(output)
 
 # finish the jumble page 
@@ -148,6 +156,6 @@ for row in all_entries:
     joutput +=row
 
 joutput += "</div><div id='footer'> source code: <a href='https://github.com/bendybendy/feedcourt'> https://github.com/bendybendy/feedcourt </a> </body></html>"
-index = open("jumble.html", 'w')
+index = open(str(args.output.resolve()) + "/jumble.html", 'w')
 index.write(joutput)
 
