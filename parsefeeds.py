@@ -133,7 +133,6 @@ for url in feedlist:
         all_entries.append(jumblerow)
 
     output += "</div>"
-   
 
 output += """</div><div id='footer'> 
              source code: <a href='https://github.com/bendybendy/feedcourt'> https://github.com/bendybendy/feedcourt </a>
@@ -147,7 +146,6 @@ index.write(output)
 shuffle(all_entries)                   
 for row in all_entries:   
     joutput +=row
-
 
 joutput += "</div><div id='footer'> source code: <a href='https://github.com/bendybendy/feedcourt'> https://github.com/bendybendy/feedcourt </a> </body></html>"
 index = open("jumble.html", 'w')
