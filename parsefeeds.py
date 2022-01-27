@@ -3,6 +3,7 @@ import datetime
 from random import shuffle 
 
 import re
+import html
 from bs4 import BeautifulSoup
 
 import argparse
@@ -69,6 +70,7 @@ feedlist = args.feedlist
 now = datetime.datetime.utcnow().isoformat()
 
 pattern = re.compile('[\W_]+')
+noquote = re.compile("[\"\']")
 
 output = """<html>
         <head><title>Fresh News</title>
@@ -123,14 +125,14 @@ for url in feedlist:
 
         if entry[1]:
             thumbnail = """<div class='iconholder'><span class='icon' style='background-image: url("%s");'></span></div>
-            """ %(entry[1])
+            """ %(noquote.sub('', entry[1]))
 
         if entry[2]:
-            comments = """<div class='comments'><a href='%s' target='_blank'>Comments &gt;</a></div>""" %(entry[2])
+            comments = """<div class='comments'><a href='%s' target='_blank'>Comments &gt;</a></div>""" %(noquote.sub('', entry[2]))
         
         # Add tooltips, but enact a text length (not just word length)
         if entry[3]:
-            tooltip = """ data-tooltip='%s' aria-describedby='tooltipText' tabindex='0'""" %(entry[3][:1000])
+            tooltip = """ data-tooltip='%s' aria-describedby='tooltipText' tabindex='0'""" %(html.escape(entry[3][:1000]))
 
         output += """<div class='entry'>
                   <a href='%s' target='_blank'%s>%s%s</a>
