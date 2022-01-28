@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 
 page = requests.get("https://digg.com/trending/render/stories?from=0&size=20")
-rss = open("/tmp/digg.rss", "w")
+rss = open("digg.rss", "w")
 
 header = """<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
