@@ -121,11 +121,12 @@ body {
 .entry a:hover {
   color: #efefee;
 }
-@media only screen and (max-device-width: 812px){
+@media only screen and (max-device-width: 920px){
   .jumblewrapper,
   .wrapper,
   .section {
     padding: 0;
+    width: 26em;
   }
 
   .more {
@@ -151,9 +152,6 @@ body {
   /* mobile styles */
  h1 , h2, body, p {
     font-size: xx-large;
-  }
-  .section {
-    width: 26em;
   }
   .entry {
     padding: 0.9em 0;
