@@ -26,6 +26,8 @@ for e in entries["items"]:
 
     title = """<title>%s</title>""" %(soup.find("h2", class_="headline").get_text(strip=True))
     l = soup.find("a", itemprop="url").attrs["href"]
+    if l[0] == '/':
+        l = "https://digg.com" + l
     link  = """<link>%s</link>""" %(l)
     plink = """<guid isPermaLink="true">%s</guid>""" %(l)
     atom  = """<atom:link href="%s" rel="standout"/>""" %(l)
