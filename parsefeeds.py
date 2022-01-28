@@ -104,7 +104,7 @@ for url in feedlist:
     f = feedparser.parse(url)
     # to debug which feed might be failing, uncomment this
     #print f['feed']['title']
-    if f['feed']['title']:
+    if "title" in f['feed'] and f['feed']['title']:
         site = f['feed']['title']
     else:
         site = f['feed']
