@@ -8,7 +8,7 @@ rss = open("digg.rss", "w")
 header = """<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
   <title>Digg Top Stories Today</title>
-  <link>http://digg.com/view/all/popular/today</link>
+  <link>https://digg.com/trending</link>
   <description>Top stories today, parsed from digg.com</description>
   <language>en-us</language>
   <generator>diggtoday.sh</generator>
