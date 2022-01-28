@@ -137,7 +137,7 @@ body {
 
   #header p {
     position: unset;
-    font-size: 2rem; 
+    font-size: x-small; 
   }
 
   #jumblewrapper {
@@ -162,5 +162,8 @@ body {
   }
   .entry:hover a:visited {
     color: #fefefe; 
+  }
+  .wrapper {
+    padding: 0 0;
   }
 }
