@@ -109,8 +109,8 @@ body {
   object-fit: cover;
   object-position: center center;
   overflow: hidden;
-  width: 55px;
-  height: 55px;
+  width: 3em;
+  height: 3em;
   display: block;
   background-size: contain;
 }
@@ -151,6 +151,9 @@ body {
   /* mobile styles */
  h1 , h2, body, p {
     font-size: xx-large;
+  }
+  .secion {
+    width: 26em;
   }
   .entry {
     padding: 0.9em 0;
