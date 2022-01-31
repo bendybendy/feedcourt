@@ -106,6 +106,8 @@ joutput +="<span class='sorter'><a href='./'> sort </a></span> </p></div> <div i
 for url in feedlist:
     if args.cached:
         cachefile = str(args.output.resolve()) + '/' + pattern.sub('', url.strip()) + ".rss"
+        if args.verbose:
+            print (cachefile)
         f = feedparser.parse(cachefile)
     else:
         f = feedparser.parse(url)
