@@ -63,6 +63,7 @@ def get_entry_metadata (e):
 parser = argparse.ArgumentParser()
 parser.add_argument('-o', '--output', help="Specify the output folder", type=pathlib.Path, default=pathlib.Path('.'))
 parser.add_argument('-f', '--feedlist', help="The text file of feeds to load", type=argparse.FileType('r'), default="feedlist.txt")
+parser.add_argument('-v', '--verbose', help="Be more verbose", action="store_true")
 args = parser.parse_args()
 
 feedlist = args.feedlist
@@ -102,12 +103,12 @@ joutput +="<span class='sorter'><a href='./'> sort </a></span> </p></div> <div i
 
 for url in feedlist:
     f = feedparser.parse(url)
-    # to debug which feed might be failing, uncomment this
-    #print f['feed']['title']
     if "title" in f['feed'] and f['feed']['title']:
         site = f['feed']['title']
     else:
         site = f['feed']
+    if args.verbose:
+        print (site)
     # make id by getting rid of spaces and non-alphanumerics
     siteid = pattern.sub('', site.strip().replace(" ",""))
     moreid = "more" + siteid 
