@@ -44,7 +44,7 @@ for url in feedlist:
         print ("  " + cachefile)
 
     # Check to see if this is a local file
-    if url.strip()[0] == '/':
+    if url.strip().startswith("file:///"):
         r = fakeRequest()
         with open (url.strip(), 'r') as f:
             r.text = f.read()
