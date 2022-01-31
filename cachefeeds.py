@@ -46,7 +46,7 @@ for url in feedlist:
     # Check to see if this is a local file
     if url.strip().startswith("file:///"):
         r = fakeRequest()
-        with open (url.strip(), 'r') as f:
+        with open (url.strip()[7:], 'r') as f:
             r.text = f.read()
     else:
         r = requests.get(url.strip(), headers={'user-agent': USER_AGENT, 'accept': ACCEPT_HEADER})
