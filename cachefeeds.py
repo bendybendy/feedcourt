@@ -33,6 +33,9 @@ noquote = re.compile("[\"\']")
 ACCEPT_HEADER = "application/atom+xml,application/rdf+xml,application/rss+xml,application/x-netcdf,application/xml;q=0.9,text/xml;q=0.2,*/*;q=0.1"
 USER_AGENT = "UniversalFeedParser/%s +http://feedparser.org/" % feedparser.__version__
 
+class fakeRequest:
+  status_code = 200
+  text = ""
 
 for url in feedlist:
     cachefile = str(args.output.resolve()) + '/' + pattern.sub('', url) + ".rss"
@@ -40,7 +43,13 @@ for url in feedlist:
         print (url.strip())
         print ("  " + cachefile)
 
-    r = requests.get(url.strip(), headers={'user-agent': USER_AGENT, 'accept': ACCEPT_HEADER})
+    # Check to see if this is a local file
+    if url.strip()[0] == '/':
+        r = fakeRequest()
+        with open (url.strip(), 'r') as f:
+            r.text = f.read()
+    else:
+        r = requests.get(url.strip(), headers={'user-agent': USER_AGENT, 'accept': ACCEPT_HEADER})
 
     # We only care if the feed is available
     if r.status_code == 200:
@@ -67,3 +76,4 @@ for url in feedlist:
             print ("  Feed didn't have a title, likely an error (no update)")
         else:
             print (url.strip() + " : bad update")
+ 
