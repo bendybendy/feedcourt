@@ -64,7 +64,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-o', '--output', help="Specify the output folder", type=pathlib.Path, default=pathlib.Path('.'))
 parser.add_argument('-f', '--feedlist', help="The text file of feeds to load", type=argparse.FileType('r'), default="feedlist.txt")
 parser.add_argument('-i', '--input', help="The folder of cached RSS feeds to use", type=pathlib.Path, default=pathlib.Path('.'))
-parser.add_argument('-c', '--cached', help="Use a cached directory of RSS feeds instead", type="store_true")
+parser.add_argument('-c', '--cached', help="Use a cached directory of RSS feeds instead", action="store_true")
 parser.add_argument('-v', '--verbose', help="Be more verbose", action="store_true")
 args = parser.parse_args()
 
@@ -109,7 +109,7 @@ for url in feedlist:
         f = feedparser.parse(cachefile)
     else:
         f = feedparser.parse(url)
-        
+
     if "title" in f['feed'] and f['feed']['title']:
         site = f['feed']['title']
     else:
