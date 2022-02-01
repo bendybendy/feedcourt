@@ -104,6 +104,8 @@ output +="<span class='sorter'><a href='./jumble.html'> jumble </a> </span></p><
 joutput +="<span class='sorter'><a href='./'> sort </a></span> </p></div> <div id='jumblewrapper'>" 
 
 for url in feedlist:
+    if url[0] == '#':
+        url = url[1:]
     if args.cached:
         cachefile = str(args.input.resolve()) + '/' + pattern.sub('', url.strip()) + ".rss"
         if args.verbose:

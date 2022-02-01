@@ -35,6 +35,9 @@ class fakeRequest:
   text = ""
 
 for url in feedlist:
+    if url[0] == '#':
+        continue
+    
     cachefile = str(args.output.resolve()) + '/' + pattern.sub('', url) + ".rss"
     if args.verbose:
         print (url.strip())
