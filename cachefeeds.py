@@ -33,6 +33,7 @@ noquote = re.compile("[\"\']")
 ACCEPT_HEADER = "application/atom+xml,application/rdf+xml,application/rss+xml,application/x-netcdf,application/xml;q=0.9,text/xml;q=0.2,*/*;q=0.1"
 ACCEPT_LANG = "en-US,en;q=0.5"
 USER_AGENT = "UniversalFeedParser/%s +http://feedparser.org/" % feedparser.__version__
+USER_AGENT = "Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:96.0) Gecko/20100101 Firefox/96.0"
 
 class fakeRequest:
   status_code = 200
