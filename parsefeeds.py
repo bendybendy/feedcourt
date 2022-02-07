@@ -62,7 +62,7 @@ def get_entry_metadata (e):
             tooltip = " ".join(t[:50])
 
     # Filter out images that come from feedburner
-    if "feeds.feedburner.com" in tooltip:
+    if tooltip and "feeds.feedburner.com" in tooltip:
         tooltip = None
 
     return (link, thumbnail, comments, tooltip)
