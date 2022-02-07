@@ -9,6 +9,8 @@ from bs4 import BeautifulSoup
 import argparse
 import pathlib
 
+import warnings
+
 def get_entry_metadata (e):
     """
     We're looking for 4 items which we will return in a list (or the empty string)
@@ -38,20 +40,27 @@ def get_entry_metadata (e):
         if "content" in e:
             soup = BeautifulSoup(e.content[0]["value"], 'html.parser')
         else:
-            soup = BeautifulSoup(e.description, 'html.parser')
-        if thumbnail is None and soup.find('img'):
-            img = soup.find('img')
-            if "src" in img.attrs:
-                thumbnail = img.attrs["src"]
+            with warnings.catch_warnings():
+                warnings.filterwarnings('error')
+                try:
+                    soup = BeautifulSoup(e.description, 'html.parser')
+                catch UserWarning:
+                    soup = None
+        
+        if soup:
+            if thumbnail is None and soup.find('img'):
+                img = soup.find('img')
+                if "src" in img.attrs:
+                    thumbnail = img.attrs["src"]
 
-        [i.replace_with(i['alt']) for i in soup.find_all('img', alt=True)]
-        tooltip = soup.get_text()
+            [i.replace_with(i['alt']) for i in soup.find_all('img', alt=True)]
+            tooltip = soup.get_text()
 
-        reddit = soup.find_all('a')[-2:]
-        if len(reddit) == 2 and reddit[0].get_text() == '[link]' and reddit[1].get_text() == '[comments]':
-            link = reddit[0].attrs["href"]
-            comments = reddit[1].attrs["href"]
-            tooltip = tooltip[:-(len("[link] [comments] "))] # Remove extra text at the end for Reddit
+            reddit = soup.find_all('a')[-2:]
+            if len(reddit) == 2 and reddit[0].get_text() == '[link]' and reddit[1].get_text() == '[comments]':
+                link = reddit[0].attrs["href"]
+                comments = reddit[1].attrs["href"]
+                tooltip = tooltip[:-(len("[link] [comments] "))] # Remove extra text at the end for Reddit
 
     # tooltips get too long....
     if tooltip:
