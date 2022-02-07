@@ -34,8 +34,11 @@ def get_entry_metadata (e):
     if "comments" in e:
         comments = e.comments
 
-    if "content" in e:
-        soup = BeautifulSoup(e.content[0]["value"], 'html.parser')
+    if "content" in e or "description" in e:
+        if "content" in e:
+            soup = BeautifulSoup(e.content[0]["value"], 'html.parser')
+        else:
+            soup = BeautifulSoup(e.description, 'html.parser')
         if thumbnail is None and soup.find('img'):
             img = soup.find('img')
             if "src" in img.attrs:
