@@ -139,7 +139,7 @@ for url in feedlist:
     sitelink = f['feed']['link']
     output += """<div class='section' id='%s'>
                 <div class='section_head'>
-                <h2><a href='%s'>%s</a></h2>
+                <h2><a href='%s' target='_blank'>%s</a></h2>
                 <div class='more' id='%s'> more </div>
                 </div><div></div>""" %(siteid, sitelink, site, moreid) 
     for e in f.entries:
