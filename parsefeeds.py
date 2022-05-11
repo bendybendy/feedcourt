@@ -53,8 +53,8 @@ def get_entry_metadata (e):
 
         reddit = soup.find_all('a')[-2:]
         if len(reddit) == 2 and reddit[0].get_text() == '[link]' and reddit[1].get_text() == '[comments]':
-            link = reddit[0].attrs["href"]
-            comments = reddit[1].attrs["href"]
+            link = reddit[0].attrs["href"].replace("wwww.reddit.com", "old.reddit.com")
+            comments = reddit[1].attrs["href"].replace("wwww.reddit.com", "old.reddit.com")
             tooltip = tooltip[:-(len("[link] [comments] "))] # Remove extra text at the end for Reddit
 
     # tooltips get too long....
