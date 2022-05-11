@@ -162,7 +162,7 @@ for url in feedlist:
         output += """<div class='entry'>
                   <a href='%s' target='_blank'%s>%s%s</a>
                   %s
-                  </div>""" %(entry[0], tooltip, thumbnail, e.title, comments)
+                  </div>""" %(entry[0].replace("wwww.reddit.com", "old.reddit.com"), tooltip, thumbnail, e.title, comments.replace("wwww.reddit.com", "old.reddit.com"))
         # generate jumble page link for later
         jumblerow = """<span class='jumble'> <a href='%s' target='_blank'>%s</a><span class='jumblesite'><a href='%s'> ( %s ) </a></span></span> | """ %(entry[0], e.title, sitelink, site)
         all_entries.append(jumblerow)
