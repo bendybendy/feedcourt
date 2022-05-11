@@ -53,8 +53,8 @@ def get_entry_metadata (e):
 
         reddit = soup.find_all('a')[-2:]
         if len(reddit) == 2 and reddit[0].get_text() == '[link]' and reddit[1].get_text() == '[comments]':
-            link = reddit[0].attrs["href"].replace("wwww.reddit.com", "old.reddit.com")
-            comments = reddit[1].attrs["href"].replace("wwww.reddit.com", "old.reddit.com")
+            link = reddit[0].attrs["href"].replace("www.reddit.com", "old.reddit.com")
+            comments = reddit[1].attrs["href"].replace("www.reddit.com", "old.reddit.com")
             tooltip = tooltip[:-(len("[link] [comments] "))] # Remove extra text at the end for Reddit
 
     # tooltips get too long....
@@ -136,7 +136,7 @@ for url in feedlist:
     # make id by getting rid of spaces and non-alphanumerics
     siteid = pattern.sub('', site.strip().replace(" ",""))
     moreid = "more" + siteid 
-    sitelink = f['feed']['link'].replace("wwww.reddit.com", "old.reddit.com")
+    sitelink = f['feed']['link'].replace("www.reddit.com", "old.reddit.com")
     output += """<div class='section' id='%s'>
                 <div class='section_head'>
                 <h2><a href='%s' target='_blank'>%s</a></h2>
@@ -162,7 +162,7 @@ for url in feedlist:
         output += """<div class='entry'>
                   <a href='%s' target='_blank'%s>%s%s</a>
                   %s
-                  </div>""" %(entry[0].replace("wwww.reddit.com", "old.reddit.com"), tooltip, thumbnail, e.title, comments.replace("wwww.reddit.com", "old.reddit.com"))
+                  </div>""" %(entry[0].replace("www.reddit.com", "old.reddit.com"), tooltip, thumbnail, e.title, comments.replace("wwww.reddit.com", "old.reddit.com"))
         # generate jumble page link for later
         jumblerow = """<span class='jumble'> <a href='%s' target='_blank'>%s</a><span class='jumblesite'><a href='%s'> ( %s ) </a></span></span> | """ %(entry[0], e.title, sitelink, site)
         all_entries.append(jumblerow)
