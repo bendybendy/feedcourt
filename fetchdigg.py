@@ -24,16 +24,18 @@ entries = page.json()
 for e in entries["items"]:
     soup = BeautifulSoup(e["html"], 'html.parser')
 
-    title = """<title>%s</title>""" %(soup.find("h2", class_="headline").get_text(strip=True))
+    title = """<title>%s</title>""" %(soup.find("h2", itemprop="headline").get_text(strip=True))
     l = soup.find("a", itemprop="url").attrs["href"]
     if l[0] == '/':
         l = "https://digg.com" + l
     link  = """<link>%s</link>""" %(l)
     plink = """<guid isPermaLink="true">%s</guid>""" %(l)
     atom  = """<atom:link href="%s" rel="standout"/>""" %(l)
-    d = soup.find("div", itemprop="description").get_text(strip=True) + " | " + re.sub("\s+", " ", soup.find("div", class_="metadata").get_text())
+    soup.find("div", class_="text-digg-gray-dark").get_text(strip=True)
+    soup.find("p", itemprop="alternativeHeadline").get_text()
+    d = soup.find("div", class_="text-digg-gray-dark").get_text(strip=True) + " | " + re.sub("\s+", " ", soup.find("p", itemprop="alternativeHeadline").get_text())
     description = """<description>%s</description>""" %(d)
-    creator = """<dc:creator>%s<dc:creator>""" %(soup.find_all("a", itemprop="keywords")[0].get_text(strip=True))
+    creator = """<dc:creator>%s<dc:creator>""" %(soup.find_all("span", itemprop="name")[0].get_text(strip=True))
     pub = """<pubDate>%s</pubDate>""" %(soup.find("time").attrs["datetime"])
     mediac = """<media:content medium="image" url="%s"/>""" %(soup.find("img").attrs["src"])
     mediad = """<media:description>%s</media:description>""" %(d)
