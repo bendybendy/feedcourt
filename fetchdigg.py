@@ -37,7 +37,7 @@ for e in entries["items"]:
     description = """<description>%s</description>""" %(d)
     creator = """<dc:creator>%s<dc:creator>""" %(soup.find_all("span", itemprop="name")[0].get_text(strip=True))
     pub = """<pubDate>%s</pubDate>""" %(soup.find("time").attrs["datetime"])
-    mediac = """<media:content medium="image" url="%s"/>""" %(soup.find("img", class_="object-cover").attrs["src"])
+    mediac = """<media:content medium="image" url="%s"/>""" %(soup.select_one("picture img", class_="object-cover").attrs["src"])
     mediad = """<media:description>%s</media:description>""" %(d)
 
     out = """<item>
