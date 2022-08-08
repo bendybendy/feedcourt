@@ -37,7 +37,10 @@ for e in entries["items"]:
     description = """<description>%s</description>""" %(d)
     creator = """<dc:creator>%s<dc:creator>""" %(soup.find_all("span", itemprop="name")[0].get_text(strip=True))
     pub = """<pubDate>%s</pubDate>""" %(soup.find("time").attrs["datetime"])
-    mediac = """<media:content medium="image" url="%s"/>""" %(soup.select_one("picture img", class_="object-cover").attrs["src"])
+    if soup.select_one("picture img", class_="object-cover"):
+      mediac = """<media:content medium="image" url="%s"/>""" %(soup.select_one("picture img", class_="object-cover").attrs["src"])
+    else:
+      mediac = ""
     mediad = """<media:description>%s</media:description>""" %(d)
 
     out = """<item>
