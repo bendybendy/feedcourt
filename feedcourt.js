@@ -1,10 +1,10 @@
-function moreorless() {
-    if (this.innerHTML == "less") {
-        this.parentElement.parentElement.style.height = "30em";
-        this.innerHTML = "more";
+function moreorless(e) {
+    if (e.innerHTML == "less") {
+        e.parentElement.parentElement.style.height = "30em";
+        e.innerHTML = "more";
     }else {
-        this.parentElement.parentElement.style.height = "auto";
-        this.innerHTML = "less";
+        e.parentElement.parentElement.style.height = "auto";
+        e.innerHTML = "less";
     }
     return false;
 }
