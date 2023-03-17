@@ -140,7 +140,7 @@ for url in feedlist:
     output += """<div class='section' id='%s'>
                 <div class='section_head'>
                 <h2><a href='%s' target='_blank'>%s</a></h2>
-                <div class='more' id='%s'> more </div>
+                <div class='more' id='%s' onclick="javascript:moreorless();"> more </div>
                 </div><div></div>""" %(siteid, sitelink, site, moreid) 
     for e in f.entries:
 
