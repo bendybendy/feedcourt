@@ -49,10 +49,13 @@ for url in feedlist:
         with open (url.strip()[7:], 'r') as f:
             r.text = f.read()
     else:
-        r = requests.get(url.strip(), headers={'User-Agent': 'feedparser/6.0.8 +https://github.com/kurtmckee/feedparser/',
-                                               'Accept-Encoding': 'gzip, deflate',
-                                               'Accept': 'application/atom+xml,application/rdf+xml,application/rss+xml,application/x-netcdf,application/xml;q=0.9,text/xml;q=0.2,*/*;q=0.1',
-                                               'A-Im': 'feed'})
+        try:
+            r = requests.get(url.strip(), headers={'User-Agent': 'feedparser/6.0.8 +https://github.com/kurtmckee/feedparser/',
+                                                   'Accept-Encoding': 'gzip, deflate',
+                                                   'Accept': 'application/atom+xml,application/rdf+xml,application/rss+xml,application/x-netcdf,application/xml;q=0.9,text/xml;q=0.2,*/*;q=0.1',
+                                                   'A-Im': 'feed'})
+        except Exception as e:
+            r.status_code = 503 # Just assume a timeout or something
 
     # We only care if the feed is available
     if r.status_code == 200:
