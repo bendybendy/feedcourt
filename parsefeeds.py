@@ -9,6 +9,8 @@ from bs4 import BeautifulSoup
 import argparse
 import pathlib
 
+import time, os, stat
+
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module='bs4')
 
@@ -119,6 +121,7 @@ for url in feedlist:
         url = url[1:]
     if args.cached and url[0] != '!':
         cachefile = str(args.input.resolve()) + '/' + pattern.sub('', url.strip()) + ".rss"
+        cacheage = time.time() - os.stat(cachefile)[stat.ST_MTIME]
         if args.verbose:
             print (cachefile)
         f = feedparser.parse(cachefile)
@@ -139,9 +142,9 @@ for url in feedlist:
     sitelink = f['feed']['link'].replace("www.reddit.com/r", "old.reddit.com/r")
     output += """<div class='section' id='%s'>
                 <div class='section_head'>
-                <h2><a href='%s' target='_blank'>%s</a></h2>
-                <div class='more' id='%s' onclick="javascript:moreorless(this);"> more </div>
-                </div><div></div>""" %(siteid, sitelink, site, moreid) 
+                  <h2><a href='%s' target='_blank'>%s</a></h2>
+                  <div class='more' id='%s' onclick="javascript:moreorless(this);"> more </div>
+                </div><div class='age'>%s</div>""" %(siteid, sitelink, site, moreid, cacheage) 
     for e in f.entries:
 
         # make main page link
