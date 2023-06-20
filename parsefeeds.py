@@ -162,7 +162,7 @@ for url in feedlist:
         if entry[3]:
             tooltip = """ data-tooltip='%s' aria-describedby='tooltipText' tabindex='0'""" %(html.escape(entry[3][:1000]))
 
-        if not title in e:
+        if not "title" in e:
             e.title = "No title"
 
         output += """<div class='entry'>
