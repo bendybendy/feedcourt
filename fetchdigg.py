@@ -2,7 +2,8 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-page = requests.get("https://digg.com/popular/render?from=0&size=30&dayFrom=1")
+# page = requests.get("https://digg.com/popular/render?from=0&size=30&dayFrom=1")
+page = requests.get("https://digg.com/popular/render?from=0&size=30&condensed=false&range=day")
 rss = open("digg.rss", "w")
 
 header = """<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
@@ -35,9 +36,9 @@ for e in entries["items"]:
     soup.find("p", itemprop="alternativeHeadline").get_text()
     d = soup.find("div", class_="text-digg-gray-dark").get_text(strip=True) + " | " + re.sub("\s+", " ", soup.find("p", itemprop="alternativeHeadline").get_text())
     description = """<description>%s</description>""" %(d)
-    creator = """<dc:creator>%s<dc:creator>""" %(soup.find_all("span", itemprop="name")[0].get_text(strip=True))
+    creator = """<dc:creator>%s</dc:creator>""" %(soup.find_all("span", itemprop="name")[0].get_text(strip=True))
     pub = """<pubDate>%s</pubDate>""" %(soup.find("time").attrs["datetime"])
-    if soup.select_one("picture img", class_="object-cover"):
+    if soup.select_one("picture img[src]", class_="object-cover"):
       mediac = """<media:content medium="image" url="%s"/>""" %(soup.select_one("picture img", class_="object-cover").attrs["src"])
     else:
       mediac = ""
