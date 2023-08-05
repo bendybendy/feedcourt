@@ -60,26 +60,29 @@ for url in feedlist:
     # We only care if the feed is available
     if r.status_code == 200:
         # And can be parsed correcty
-        f = feedparser.parse(r.text)
+        try:
+            f = feedparser.parse(r.text)
 
-        if args.verbose:
-            print ("  " + str(f.bozo))
-            if f.bozo:
-                print ("  " + "Warning or error found! Will still update")
-                print ("    " + f.bozo_exception.getMessage())
-                print ("    " + str(f.bozo_exception.getLineNumber()))
-                print ("    " + r.text)
+            if args.verbose:
+                print ("  " + str(f.bozo))
+                if f.bozo:
+                    print ("  " + "Warning or error found! Will still update")
+                    print ("    " + f.bozo_exception.getMessage())
+                    print ("    " + str(f.bozo_exception.getLineNumber()))
+                    print ("    " + r.text)
 
-        if "title" in f['feed'] and f['feed']['title']:
-            site = f['feed']['title']
-        else:
-            site = f['feed']
+            if "title" in f['feed'] and f['feed']['title']:
+                site = f['feed']['title']
+            else:
+                site = f['feed']
 
-        if isinstance(site, str):
-            with open(cachefile, 'w') as o:
-                o.write(r.text)
-        elif args.verbose:
-            print ("  Feed didn't have a title, likely an error (no update)")
-        else:
-            print (url.strip() + " : bad update")
- 
+            if isinstance(site, str):
+                with open(cachefile, 'w') as o:
+                    o.write(r.text)
+            elif args.verbose:
+                print ("  Feed didn't have a title, likely an error (no update)")
+            else:
+                print (url.strip() + " : bad update")
+        except Exception as e:
+            if args.verbose:
+                print ("   Feed is invalid, likely a bad character encoding.")
