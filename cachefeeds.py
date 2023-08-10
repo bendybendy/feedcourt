@@ -53,6 +53,7 @@ for url in feedlist:
             r = requests.get(url.strip(), headers={'User-Agent': 'feedparser/6.0.8 +https://github.com/kurtmckee/feedparser/',
                                                    'Accept-Encoding': 'gzip, deflate',
                                                    'Accept': 'application/atom+xml,application/rdf+xml,application/rss+xml,application/x-netcdf,application/xml;q=0.9,text/xml;q=0.2,*/*;q=0.1',
+                                                             'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8'
                                                    'A-Im': 'feed'})
         except Exception as e:
             r.status_code = 503 # Just assume a timeout or something
@@ -80,9 +81,7 @@ for url in feedlist:
                 with open(cachefile, 'w') as o:
                     o.write(r.text)
             elif args.verbose:
-                print ("  Feed didn't have a title, likely an error (no update)")
-            else:
-                print (url.strip() + " : bad update")
+                print (url.strip() + " : Feed didn't have a title, likely an error (no update)")
         except Exception as e:
             if args.verbose:
                 print ("   Feed is invalid, likely a bad character encoding.")

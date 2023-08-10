@@ -144,7 +144,7 @@ for url in feedlist:
                 <div class='section_head'>
                   <h2><a href='%s' target='_blank'>%s</a></h2>
                   <div class='more' id='%s' onclick="javascript:moreorless(this);"> more </div>
-                </div><div class='age'>%s</div>""" %(siteid, sitelink, site, moreid, cacheage) 
+                </div><div class='age'>%s</div>""" %(siteid, sitelink, site, moreid, str(datetime.timedelta(seconds=round(cacheage))))
     for e in f.entries:
 
         # make main page link
