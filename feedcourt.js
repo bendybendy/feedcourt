@@ -1,18 +1,21 @@
+function moreorless(e) {
+    if (e.innerHTML == "less") {
+        e.parentElement.parentElement.style.height = "30em";
+        e.innerHTML = "more";
+    }else {
+        e.parentElement.parentElement.style.height = "auto";
+        e.innerHTML = "less";
+    }
+    return false;
+}
 function pagelinks(){
     var morelinks = document.getElementsByClassName('more')
     for (var i = 0 ; i < morelinks.length ; i++){
         console.log("making links");
         l = morelinks[i];
-        l.addEventListener('click',function(){
-            if (this.innerHTML == "less") {
-                this.parentElement.parentElement.style.height = "30em";
-                this.innerHTML = "more";
-            }else {
-                this.parentElement.parentElement.style.height = "auto";
-                this.innerHTML = "less";
-            }
-        });
+        l.addEventListener('click',moreorless);
     }
+    return false;
 }
 function convertUTCDateToLocalDate(date) {
         var newDate = new Date(date.getTime()+date.getTimezoneOffset()*60*1000);
@@ -30,5 +33,5 @@ function utctolocal(){
 }
 function loadroutine(){
     utctolocal();
-    pagelinks();
+    // pagelinks();
 }

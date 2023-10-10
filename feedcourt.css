@@ -1,7 +1,11 @@
+html {
+  font-size: .91rem;
+}
+
 h1, h2, body, p  {
   font-family: sans-serif;
   color: #fefefe;
-  font-size: 12;
+  /* font-size: 13; */
 }
 .section_head h2 {
   max-width: 14rem;
@@ -11,7 +15,7 @@ a, h2 a:visited {
   text-decoration: none;
 }
 a:visited {
-  color: #333;
+  color: #777;
 }
 body {
   background-color: #010101;
@@ -41,7 +45,7 @@ body {
 }
 #header p { 
   position: absolute;
-  left: 9em;
+  right: 9em;
   top: 0.85em;
   text-transform: lowercase;
 }
@@ -62,7 +66,7 @@ body {
   vertical-align: top;
   height: 30em;
   overflow: hidden;
-  width: 26em;
+  width: 33em;
   border: 1px dotted #444;
   padding: 1.1em;
   margin: 0.6em 0 0.8em 1.2em;
@@ -80,25 +84,54 @@ body {
   text-align: center;
   font-variant: small-caps;
 }
+.age {
+  float: right;
+  color: #333;
+  height: 0;
+  margin-top: -30px;
+}
 .entry {
-  border-bottom: 1px solid #333;
+  border-top: 1px solid #333;
   padding: 0.2em 0;
-  max-width: 25em;
+  max-width: 32em;
   margin-left:auto;
   margin-right:auto;
-
+  font-family: -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, Helvetica, sans-serif;
 }
+
+.iconholder {
+  float: right;
+  border: 1px solid #F2F2F2;
+  border-radius: 2px;
+  padding: 1px;
+  margin-left: 0.4em;
+  margin-bottom: 0.4em;
+}
+.entry {
+  clear: both;
+}
+.icon {
+  box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.1);
+  width: 3em;
+  height: 3em;
+  display: block;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
 .jumblesite a:hover,
 .jumble a:hover,
 .section_head h2 a:hover,
 .entry a:hover {
   color: #efefee;
 }
-@media only screen and (max-device-width: 812px){
+@media only screen and (max-device-width: 920px){
   .jumblewrapper,
   .wrapper,
   .section {
     padding: 0;
+    width: 26em;
   }
 
   .more {
@@ -109,7 +142,7 @@ body {
 
   #header p {
     position: unset;
-    font-size: 2rem; 
+    font-size: x-small; 
   }
 
   #jumblewrapper {
@@ -134,5 +167,8 @@ body {
   }
   .entry:hover a:visited {
     color: #fefefe; 
+  }
+  .wrapper {
+    padding: 0 0;
   }
 }
