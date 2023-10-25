@@ -50,9 +50,10 @@ for url in feedlist:
             r.text = f.read()
     else:
         try:
-            r = requests.get(url.strip(), headers={'User-Agent': 'feedparser/6.0.8 +https://github.com/kurtmckee/feedparser/',
+            r = requests.get(url.strip(), headers={'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/117.0',
                                                    'Accept-Encoding': 'gzip, deflate',
-                                                   'Accept': 'application/atom+xml,application/rdf+xml,application/rss+xml,application/x-netcdf,application/xml;q=0.9,text/xml;q=0.2,*/*;q=0.1',                                                   'A-Im': 'feed'})
+                                                   'Accept': 'application/atom+xml,application/rdf+xml,application/rss+xml,application/x-netcdf,application/xml;q=0.9,text/xml;q=0.2,*/*;q=0.1',
+                                                   'A-Im': 'feed'})
         except Exception as e:
             r.status_code = 503 # Just assume a timeout or something
 
@@ -60,7 +61,7 @@ for url in feedlist:
     if r.status_code == 200:
         # And can be parsed correcty
         try:
-            f = feedparser.parse(r.text)
+            f = feedparser.parse(r.text.encode('utf-8', 'surrogateescape').decode('utf-8'))
 
             if args.verbose:
                 print ("  " + str(f.bozo))
