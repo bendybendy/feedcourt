@@ -12,7 +12,7 @@ https://www.techmeme.com/feed.xml
 http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml
 http://feeds.feedburner.com/TheAtlantic
 http://www.newyorker.com/feed/everything
-http://fivethirtyeight.com/all/feed
+https://abcnews.go.com/abcnews/538headlines?allowedType=Story
 http://www.slate.com/articles.fulltext.all.10.rss
 http://feeds.feedburner.com/mcsweeneys/
 http://stackexchange.com/feeds/questions
@@ -34,7 +34,7 @@ http://www.nytimes.com/services/xml/rss/nyt/Arts.xml
 https://www.reddit.com/r/MapPorn.rss
 https://www.reddit.com/r/Geography.rss
 https://publicdomainreview.org/feed/
-#https://www.aldaily.com/feed/
+https://www.aldaily.com/feed/
 https://dustedmagazine.tumblr.com/rss
 https://www.avclub.com/rss
 #http://thequietus.com/feed
