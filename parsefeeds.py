@@ -147,6 +147,9 @@ for url in feedlist:
                 </div><div class='age'>%s</div>""" %(siteid, sitelink, site, moreid, str(datetime.timedelta(seconds=round(cacheage))))
     for e in f.entries:
 
+        if args.verbose:
+            print (e.title)
+
         # make main page link
         thumbnail = comments = tooltip = ""
         entry = get_entry_metadata (e)
@@ -181,7 +184,7 @@ output += """</div><div id='footer'>
              <script defer src='tooltip.min.js' type='text/javascript'></script>
             </body></html>"""
 index = open(str(args.output.resolve()) + "/index.html", 'w')
-index.write(output)
+index.write(output.encode('utf-8', 'ignore').decode('utf-8'))
 
 # finish the jumble page 
 shuffle(all_entries)                   
