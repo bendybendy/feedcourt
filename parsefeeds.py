@@ -1,16 +1,17 @@
-import feedparser
 import datetime
-from random import shuffle 
-
 import re
+from random import shuffle
 
-feedlist =  open("feedlist.txt", 'r')
-#now = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
+import feedparser
+
+feedlist = open("feedlist.txt", "r")
+# now = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
 now = datetime.datetime.utcnow().isoformat()
 
-pattern = re.compile('[\W_]+')
+pattern = re.compile("[\W_]+")
 
-output = """<html>
+output = (
+    """<html>
         <head><title>Feed Court</title>
            <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
            <meta http-equiv="refresh" content="600">
@@ -26,58 +27,62 @@ output = """<html>
         </head>
         <body onload="loadroutine();">
            <div id='header'><h1>Feed Court</h1>
-                <p> |  a wall of text rss aggregator  |  updated: <span id='utcupdate'>%s</span> | 
-           """ %now
+                <p> |  a wall of text rss aggregator  |  updated: <span id='utcupdate'>%s</span> |
+           """
+    % now
+)
 
-#init list for jumbling entries  
+# init list for jumbling entries
 all_entries = []
-# make a copy of the header for the jumble page 
+# make a copy of the header for the jumble page
 joutput = output
 
-#start the wrapper divs and header  
-output +="<span class='sorter'><a href='./jumble.html'> jumble </a> </span></p></div> <div id='wrapper'>" 
-joutput +="<span class='sorter'><a href='./'> sort </a></span> </p></div> <div id='jumblewrapper'>" 
+# start the wrapper divs and header
+output += "<span class='sorter'><a href='./jumble.html'> jumble </a> </span></p></div> <div id='wrapper'>"
+joutput += "<span class='sorter'><a href='./'> sort </a></span> </p></div> <div id='jumblewrapper'>"
 
 for url in feedlist:
     f = feedparser.parse(url)
     # to debug which feed might be failing, uncomment this
-    #print f['feed']['title']
-    if f['feed']['title']:
-        site = f['feed']['title']
+    # print f['feed']['title']
+    if f["feed"]["title"]:
+        site = f["feed"]["title"]
     else:
-        site = f['feed']
+        site = f["feed"]
     # make id by getting rid of spaces and non-alphanumerics
-    siteid = pattern.sub('', site.strip().replace(" ",""))
-    moreid = "more" + siteid 
-    sitelink = f['feed']['link']
-    output += """<div class='section' id='%s'>
+    siteid = pattern.sub("", site.strip().replace(" ", ""))
+    moreid = "more" + siteid
+    sitelink = f["feed"]["link"]
+    output += f"""<div class='section' id='{siteid}'>
                 <div class='section_head'>
-                <h2><a href='%s'>%s</a></h2>
-                <div class='more' id='%s'> more </div>
-                </div><div></div>""" %(siteid, sitelink, site, moreid) 
+                <h2><a href='{sitelink}'>{site}</a></h2>
+                <div class='more' id='{moreid}'> more </div>
+                </div><div></div>"""
     for e in f.entries:
         # make main page link
-        output += """<div class='entry'>
-                  <a href='%s' target='_blank'>%s</a>
-                  </div>""" %(e.link, e.title)
+        output += f"""<div class='entry'>
+                  <a href='{e.link}' target='_blank'>{e.title}</a>
+                  </div>"""
         # generate jumble page link for later
-        jumblerow = """<span class='jumble'> <a href='%s' target='_blank'>%s</a><span class='jumblesite'><a href='%s'> ( %s ) </a></span></span> | """ %(e.link, e.title, sitelink, site)
+        jumblerow = (
+            """<span class='jumble'> <a href='%s' target='_blank'>%s</a><span class='jumblesite'><a href='%s'> ( %s ) </a></span></span> | """
+            % (e.link, e.title, sitelink, site)
+        )
         all_entries.append(jumblerow)
 
     output += "</div>"
-   
+
 
 output += "</div><div id='footer'> source code: <a href='https://github.com/bendybendy/feedcourt'> https://github.com/bendybendy/feedcourt </a> </body></html>"
-index = open("index.html", 'w')
+index = open("index.html", "w", encoding="utf-8")
 index.write(output)
 
-# finish the jumble page 
-shuffle(all_entries)                   
-for row in all_entries:   
-    joutput +=row
+# finish the jumble page
+shuffle(all_entries)
+for row in all_entries:
+    joutput += row
 
 
 joutput += "</div><div id='footer'> source code: <a href='https://github.com/bendybendy/feedcourt'> https://github.com/bendybendy/feedcourt </a> </body></html>"
-index = open("jumble.html", 'w')
+index = open("jumble.html", "w", encoding="utf-8")
 index.write(joutput)
-
