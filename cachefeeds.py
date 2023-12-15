@@ -27,8 +27,8 @@ args = parser.parse_args()
 
 feedlist = args.feedlist
 
-pattern = re.compile('[\W_]+')
-noquote = re.compile("[\"\']")
+pattern = re.compile(r'[\W_]+')
+noquote = re.compile(r"[\"\']")
 
 class fakeRequest:
   status_code = 200
