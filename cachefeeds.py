@@ -50,7 +50,7 @@ for url in feedlist:
             r.text = f.read()
     else:
         try:
-            r = requests.get(url.strip(), headers={'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/117.0',
+            r = requests.get(url.strip(), headers={'User-Agent': 'Links (2.14; Linux 4.14.117-grsec-grsec+ x86_64; GNU C 7.3; text)',
                                                    'Accept-Encoding': 'gzip, deflate',
                                                    'Accept': 'application/atom+xml,application/rdf+xml,application/rss+xml,application/x-netcdf,application/xml;q=0.9,text/xml;q=0.2,*/*;q=0.1',
                                                    'A-Im': 'feed'})
