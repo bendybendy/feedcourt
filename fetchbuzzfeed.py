@@ -24,7 +24,7 @@ header = """<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://
 <atom:link href="https://www.buzzfeed.com/index.xml" rel="self"/>
 <language>en</language>
 <copyright>Copyright 2024 BuzzFeed, Inc.</copyright>
-<description>BuzzFeed has breaking news, vital journalism, quizzes, videos, celeb news, Tasty food videos, recipes, DIY hacks, and all the trending buzz you’ll want to share with your friends. Copyright BuzzFeed, Inc. All rights reserved.</description>
+<description>BuzzFeed has breaking news, vital journalism, quizzes, videos, celeb news, Tasty food videos, recipes, DIY hacks, and all the trending buzz youll want to share with your friends. Copyright BuzzFeed, Inc. All rights reserved.</description>
 <lastBuildDate>{}</lastBuildDate>
 <managingEditor>editor@buzzfeed.com (https://www.buzzfeed.com/about)</managingEditor>
 <webMaster>editor@buzzfeed.com (https://www.buzzfeed.com/about)</webMaster>
