@@ -30,7 +30,7 @@ header = """<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://
 <webMaster>editor@buzzfeed.com (https://www.buzzfeed.com/about)</webMaster>
 <image>
 <url>https://webappstatic.buzzfeed.com/static/images/public/rss/logo.png</url>
-<title>BuzzFeed - Trending</title>
+<title>BuzzFeed - Top Stories</title>
 <link>https://www.buzzfeed.com/index</link>
 </image>""".format(build_time)
 
@@ -39,7 +39,7 @@ rss.write(header)
 footer = """</channel>
 </rss>"""
 
-items = y["props"]["pageProps"]["trending"]
+items = y["props"]["pageProps"]["moreStories"]
 
 for e in items:
     title = """<title>%s</title>""" %(e["name"])
