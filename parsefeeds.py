@@ -191,7 +191,7 @@ shuffle(all_entries)
 for row in all_entries:   
     joutput +=row
 
-joutput += "</div><div id='footer'> source code: <a href='https://github.com/bendybendy/feedcourt'> https://github.com/bendybendy/feedcourt </a> </body></html>"
+joutput += "</div><div id='footer'> source code: <a href='https://github.com/xkahn/feedcourt'> https://github.com/xkahn/feedcourt </a> </body></html>"
 index = open(str(args.output.resolve()) + "/jumble.html", 'w')
 index.write(joutput)
 
