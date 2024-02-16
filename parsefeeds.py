@@ -103,7 +103,7 @@ output = """<html>
            <script src='feedcourt.js' type='text/javascript'> </script>
         </head>
         <body onload="loadroutine();">
-           <div id='header'><h1>Feed Court</h1>
+           <div id='header'><h1>Fresh News</h1>
                 <p> |  a wall of text rss aggregator  |  updated: <span id='utcupdate'>%s</span> | 
            """ %now
 
